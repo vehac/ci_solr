@@ -1,0 +1,52 @@
+version : "3" 
+services :
+    webserver :
+        build :
+            context : ./docker/php
+            dockerfile : Dockerfile 
+        container_name : php_solr
+        ports : 
+            - 8484:80
+        networks :
+            backend-net :
+                ipv4_address : 14.25.22.19
+        links :
+            - database
+        depends_on :
+            - database
+        volumes :
+            - .:/var/www/html
+        command : sh /var/www/html/docker/php/init.sh
+    database :
+        container_name : db_solr
+        image : mariadb
+        ports :
+            - "9409:3306"
+        networks :
+            backend-net :
+                ipv4_address : 14.25.22.18
+        environment :
+            - MYSQL_ROOT_PASSWORD=3*DB6ci9
+            - MYSQL_DATABASE=my_db
+    solr :
+        container_name : ci_solr
+        image: solr:8.11.2
+        ports :
+            - "9483:8983"
+        command:
+            - solr-precreate
+            - gettingstarted
+        volumes:
+            - ./upload/data-solr00:/var/solr
+            - ./upload/driver-solr/dataimporthandler/lib:/opt/solr/contrib/dataimporthandler/lib
+        networks :
+            backend-net :
+                ipv4_address : 14.25.22.20
+        
+networks :
+    backend-net :
+        driver : bridge
+        ipam :
+            driver : default
+            config :
+                - subnet : 14.25.22.0/26

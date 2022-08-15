@@ -1,0 +1,20 @@
+<!-- AGREGADO PARA ARTICULOS -->
+<dataConfig>
+    <xi:include href="./db-connection.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>       
+
+    <document>
+        <entity name="article" transformer="DateFormatTransformer" query="SELECT 
+            a.id AS id, 
+            a.title AS title, 
+            a.description AS description, 
+            DATE_FORMAT(a.created_at,'%Y-%m-%dT%TZ') as created_at
+            FROM articles a">
+            
+            <!--datos articulo -->
+            <field column="id" name="id" />
+            <field column="title" name="title" />
+            <field column="description" name="description" />
+            <field column="created_at" name="created_at" />
+        </entity>
+    </document>
+</dataConfig>

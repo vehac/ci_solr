@@ -1,0 +1,7 @@
+<!-- AGREGADO PARA ARTICULOS -->
+<dataSource
+    type="JdbcDataSource" 
+    driver="com.mysql.jdbc.Driver"
+    url="jdbc:mysql://14.25.22.18:3306/my_db?useUnicode=true&amp;zeroDateTimeBehavior=convertToNull&amp;autoReconnect=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8&amp;sessionVariables=group_concat_max_len=1000000" 
+    user="root" 
+    password="3*DB6ci9" />
