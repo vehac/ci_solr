@@ -52,7 +52,7 @@ use my_db;
 SOURCE /var/www/html/ci_solr/docker/my_db.sql
 ```
 
-## Sorl
+## Solr
 - Luego de iniciar el contenedor con php (webserver) y luego de cargar la data del archivo `docker/my_db.sql` en la BD `my_db`, 
 crear el core `articles`
 ```bash
